@@ -37,3 +37,30 @@ namespace RectangleTestSuite
             Assert::IsFalse(isRectangle(points), L"The points should not form a rectangle.");
         }
     };
+
+    TEST_CLASS(Perimeter_Calculation_Tests)
+    {
+    public:
+        TEST_METHOD(Test_RectanglePerimeter)
+        {
+            double points[4][2] = { {0, 0}, {4, 0}, {4, 3}, {0, 3} };
+            double perimeter = calculatePerimeter(points);
+            Assert::AreEqual(14.00, perimeter, 0.01, L"Perimeter should be 14.00 for the rectangle.");
+        }
+
+        TEST_METHOD(Test_ParallelogramPerimeter)
+        {
+            double points[4][2] = { {0, 0}, {3, 1}, {5, 4}, {2, 3} };
+            double perimeter = calculatePerimeter(points);
+            Assert::AreEqual(13.54, perimeter, 0.01, L"Perimeter should be 13.54 for the shape.");
+        }
+
+        TEST_METHOD(Test_CollinearPointsPerimeter)
+        {
+            double points[4][2] = { {0, 0}, {1, 1}, {2, 2}, {3, 3} };
+            double perimeter = calculatePerimeter(points);
+            Assert::AreEqual(8.49, perimeter, 0.01, L"Perimeter should be 8.49 for collinear points.");
+        }
+    };
+
+}
