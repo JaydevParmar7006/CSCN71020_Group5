@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #include "main.h"
 #include "triangleSolver.h"
+#include "rectangleSolver.h"
 
 int side = 0;
 
@@ -15,14 +17,45 @@ int main() {
 
 		switch (shapeChoice)
 		{
-		case 1:
+		case 1: {
 			printf_s("Triangle selected.\n");
-			int triangleSides[3] = { 0, 0, 0 };
-			int* triangleSidesPtr = getTriangleSides(triangleSides);
-			//printf_s("! %d\n", triangleSidesPtr[0]);
+			double triangleSides[3] = { 0.0, 0.0, 0.0 };
+			double* triangleSidesPtr = getTriangleSides(triangleSides);
+			
 			char* result = analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
-			printf_s("%s\n", result);
+			if (result == NULL) {
+				printf("Error: Traingle is not analyzed, due to memory allocation failure.\n");
+			}
+			else {
+				printf("Triangle analysis result: %s\n", result);
+				free(result);
+			}
+			
 			break;
+		}
+		case 2: {
+			printf_s("Rectangle selected.\n");
+			double rectanglePoints[4][2] = { {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0} };
+			getRectanglePoints(rectanglePoints);
+
+			// Calculate the perimeter for all shapes
+			double perimeter = calculatePerimeter(rectanglePoints);
+
+			// Print the perimeter, rounded to two decimal places
+			printf("Perimeter: %.2f\n", perimeter);
+
+			// Validate if the points form a rectangle
+			if (isRectangle(rectanglePoints)) {
+				double area = calculateArea(rectanglePoints);
+				printf("The points form a rectangle.\n");
+				printf("Area: %.2f\n", area);
+			}
+			else {
+				printf("The points do not form a rectangle.\n");
+			}
+			break;
+		}
+
 		case 0:
 			continueProgram = false;
 			break;
@@ -44,6 +77,7 @@ void printWelcome() {
 
 int printShapeMenu() {
 	printf_s("1. Triangle\n");
+	printf_s("2. Rectangle\n");
 	printf_s("0. Exit\n");
 
 	int shapeChoice;
@@ -54,11 +88,41 @@ int printShapeMenu() {
 	return shapeChoice;
 }
 
-int* getTriangleSides(int* triangleSides) {
+double* getTriangleSides(double* triangleSides) {
 	printf_s("Enter the three sides of the triangle: ");
 	for (int i = 0; i < 3; i++)
 	{
-		scanf_s("%d", &triangleSides[i]);
+		while (true) {
+			printf("Side %d: ", i + 1);
+			int result = scanf_s("%lf", &triangleSides[i]);
+
+			if (result == 1 && triangleSides[i] > 0.0) {
+				break;
+			}
+			else {
+				printf("Invalid input. Please enter a valid input.\n");
+
+				while (getchar() != '\n');
+			}
+
+		}
+
 	}
 	return triangleSides;
-} // hellon world 
+} 
+
+void getRectanglePoints(double points[4][2]) {
+	printf_s("Enter the coordinates of four points (x y) separated by spaces:\n");
+	for (int i = 0; i < 4; i++) {
+		while (true) {
+			printf("Point %d: ", i + 1);
+			if (scanf_s("%lf %lf", &points[i][0], &points[i][1]) == 2) {
+				break;
+			}
+			else {
+				printf("Invalid input. Please enter two numeric values for Point %d.\n", i + 1);
+				while (getchar() != '\n');
+			}
+		}
+	}
+}
