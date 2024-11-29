@@ -22,6 +22,7 @@ namespace TriangleTestSuite
 			free(result);
 		}
 	};
+
 	TEST_CLASS(IsoscelesTriangle)
 	{
 	public:
@@ -35,6 +36,7 @@ namespace TriangleTestSuite
 			free(result);
 		}
 	};
+
 	TEST_CLASS(ScaleneTriangle)
 	{
 	public:
@@ -48,9 +50,11 @@ namespace TriangleTestSuite
 			free(result);
 		}
 	};
+
 	TEST_CLASS(ToCheck_IfForms_A_TriangleOrNot)
 	{
 	public:
+
 		TEST_METHOD(TestNotATriangle_OneSideTooLong)
 		{
 
@@ -70,6 +74,50 @@ namespace TriangleTestSuite
 		}
 	};
 
+	TEST_CLASS(ToCheck_InvalidInput)
+	{
+	public:
 
+		TEST_METHOD(TestInvalidInput_NegativeSides)
+		{
+
+			double side1 = -5.0, side2 = 5.0, side3 = 5.0;
+			char* result = analyzeTriangle(side1, side2, side3);
+			Assert::AreEqual("Invalid input", result);
+			free(result);
+		}
+
+		TEST_METHOD(TestInvalidInput_ZeroSides)
+		{
+
+			double side1 = 0.0, side2 = 5.0, side3 = 5.0;
+			char* result = analyzeTriangle(side1, side2, side3);
+			Assert::AreEqual("Invalid input", result);
+			free(result);
+		}
+	};
+
+	TEST_CLASS(ToCheck_InvalidInput)
+	{
+	public:
+
+		TEST_METHOD(TestInvalidInput_NegativeSides)
+		{
+
+			double side1 = -5.0, side2 = 5.0, side3 = 5.0;
+			char* result = analyzeTriangle(side1, side2, side3);
+			Assert::AreEqual("Invalid input", result);
+			free(result);
+		}
+
+		TEST_METHOD(TestInvalidInput_ZeroSides)
+		{
+
+			double side1 = 0.0, side2 = 5.0, side3 = 5.0;
+			char* result = analyzeTriangle(side1, side2, side3);
+			Assert::AreEqual("Invalid input", result);
+			free(result);
+		}
+	};
 }
 
