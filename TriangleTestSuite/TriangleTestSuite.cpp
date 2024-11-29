@@ -22,5 +22,19 @@ namespace TriangleTestSuite
 			free(result);
 		}
 	};
+	TEST_CLASS(IsoscelesTriangle)
+	{
+	public:
+
+		TEST_METHOD(TestIsosceles_TwoSidesAreEqual)
+		{
+			double side1 = 5.0, side2 = 5.0, side3 = 8.0;
+			char* result = analyzeTriangle(side1, side2, side3);
+			Assert::IsTrue(strstr(result, "Isosceles triangle.") != NULL, L"Triangle type is incorrect.");
+			Assert::IsTrue(strstr(result, "Angles: A = 36.87 Degrees, B = 36.87 Degrees, C = 106.26 Degrees") != NULL, L"Angles do not match expected values.");
+			free(result);
+		}
+	};
+
 }
 
