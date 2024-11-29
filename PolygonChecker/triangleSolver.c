@@ -42,6 +42,14 @@ char* analyzeTriangle(double side1, double side2, double side3) {
 	}
 
 
+	double angleA = acos((double)(side2 * side2 + side3 * side3 - side1 * side1) / (2.0 * side2 * side3)) * (180.0 / PI);
+	double angleB = acos((double)(side1 * side1 + side3 * side3 - side2 * side2) / (2.0 * side1 * side3)) * (180.0 / PI);
+	double angleC = 180.0 - angleA - angleB;
+
+	sprintf(result + strlen(result), "Angles: A = %.2f Degrees, B = %.2f Degrees, C = %.2f Degrees", angleA, angleB, angleC);
+
+
+
 
 	
 
