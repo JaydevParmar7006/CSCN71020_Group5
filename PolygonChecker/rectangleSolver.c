@@ -49,3 +49,16 @@ double calculatePerimeter(double points[4][2]) {
 }
 
 
+// Function to calculate the area of a rectangle
+double calculateArea(double points[4][2]) {
+    // Sort points in counterclockwise order
+    sortRectanglePoints(points);
+
+    // Calculate lengths of adjacent sides
+    double length = calculateDistance(points[0][0], points[0][1], points[1][0], points[1][1]);
+    double width = calculateDistance(points[1][0], points[1][1], points[2][0], points[2][1]);
+
+    // Return area
+    return round((length * width) * 100.0) / 100.0; // Round to 2 decimal places
+}
+
