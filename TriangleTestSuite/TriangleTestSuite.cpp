@@ -35,6 +35,19 @@ namespace TriangleTestSuite
 			free(result);
 		}
 	};
+	TEST_CLASS(ScaleneTriangle)
+	{
+	public:
+
+		TEST_METHOD(TestScalene_AllSidesDifferent)
+		{
+			double side1 = 3.0, side2 = 4.0, side3 = 5.0;
+			char* result = analyzeTriangle(side1, side2, side3);
+			Assert::IsTrue(strstr(result, "Scalene triangle.") != NULL, L"Triangle type is incorrect.");
+			Assert::IsTrue(strstr(result, "Angles: A = 36.87 Degrees, B = 53.13 Degrees, C = 90.00 Degrees") != NULL, L"Angles do not match expected values.");
+			free(result);
+		}
+	};
 
 }
 
