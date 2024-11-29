@@ -62,3 +62,57 @@ double calculateArea(double points[4][2]) {
     return round((length * width) * 100.0) / 100.0; // Round to 2 decimal places
 }
 
+// Function to calculate the distance between two points
+double calculateDistance(double x1, double y1, double x2, double y2) {
+    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+}
+
+// Helper function to find the bottom-left point
+int findBottomLeftIndex(double points[4][2]) {
+    int minIndex = 0;
+    for (int i = 1; i < 4; i++) {
+        if (points[i][1] < points[minIndex][1] ||
+            (points[i][1] == points[minIndex][1] && points[i][0] < points[minIndex][0])) {
+            minIndex = i;
+        }
+    }
+    return minIndex;
+}
+
+// Function to calculate angle for sorting
+double calculateAngle(double x1, double y1, double x2, double y2) {
+    return atan2(y2 - y1, x2 - x1);
+}
+
+// Function to sort points in counterclockwise order
+void sortRectanglePoints(double points[4][2]) {
+    // Find the bottom-left point
+    int bottomLeftIndex = findBottomLeftIndex(points);
+    double refX = points[bottomLeftIndex][0];
+    double refY = points[bottomLeftIndex][1];
+
+    // Swap the bottom-left point with the first point
+    double tempX = points[0][0];
+    double tempY = points[0][1];
+    points[0][0] = refX;
+    points[0][1] = refY;
+    points[bottomLeftIndex][0] = tempX;
+    points[bottomLeftIndex][1] = tempY;
+
+    // Sort the remaining points based on their angles with the reference point
+    for (int i = 1; i < 3; i++) {
+        for (int j = i + 1; j < 4; j++) {
+            double angle1 = calculateAngle(refX, refY, points[i][0], points[i][1]);
+            double angle2 = calculateAngle(refX, refY, points[j][0], points[j][1]);
+            if (angle1 > angle2) {
+                // Swap points[i] and points[j]
+                double tempX = points[i][0];
+                double tempY = points[i][1];
+                points[i][0] = points[j][0];
+                points[i][1] = points[j][1];
+                points[j][0] = tempX;
+                points[j][1] = tempY;
+            }
+        }
+    }
+}
