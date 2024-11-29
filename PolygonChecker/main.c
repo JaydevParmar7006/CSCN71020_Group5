@@ -15,13 +15,19 @@ int main() {
 
 		switch (shapeChoice)
 		{
-		case 1:
+		case 1: {
 			printf_s("Triangle selected.\n");
-			int triangleSides[3] = { 0, 0, 0 };
-			int* triangleSidesPtr = getTriangleSides(triangleSides);
-			//printf_s("! %d\n", triangleSidesPtr[0]);
+			double triangleSides[3] = { 0.0, 0.0, 0.0 };
+			double* triangleSidesPtr = getTriangleSides(triangleSides);
+			
 			char* result = analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
-			printf_s("%s\n", result);
+			if (result == NULL) {
+				printf("Error: Traingle is not analyzed, due to memory allocation failure.\n");
+			}
+			else {
+				printf("Triangle analysis result: %s\n", result);
+				free(result);
+			}
 			break;
 		case 0:
 			continueProgram = false;
