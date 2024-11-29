@@ -48,6 +48,28 @@ namespace TriangleTestSuite
 			free(result);
 		}
 	};
+	TEST_CLASS(ToCheck_IfForms_A_TriangleOrNot)
+	{
+	public:
+		TEST_METHOD(TestNotATriangle_OneSideTooLong)
+		{
+
+			double side1 = 1.0, side2 = 2.0, side3 = 10.0;
+			char* result = analyzeTriangle(side1, side2, side3);
+			Assert::AreEqual("Not a triangle", result);
+			free(result);
+		}
+
+		TEST_METHOD(TestNotATriangle_InequalityTheorem_NotFollowed)
+		{
+
+			double side1 = 1.0, side2 = 2.0, side3 = 1.0;
+			char* result = analyzeTriangle(side1, side2, side3);
+			Assert::AreEqual("Not a triangle", result);
+			free(result);
+		}
+	};
+
 
 }
 
