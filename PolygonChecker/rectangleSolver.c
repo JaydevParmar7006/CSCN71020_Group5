@@ -33,4 +33,32 @@ bool isRectangle(double points[4][2]) {
     return true; // Valid rectangle
 }
 
+// Function to calculate the perimeter
+double calculatePerimeter(double points[4][2]) {
+    // Sort points in counterclockwise order
+    sortRectanglePoints(points);
+
+    // Calculate distances between adjacent points
+    double d1 = calculateDistance(points[0][0], points[0][1], points[1][0], points[1][1]);
+    double d2 = calculateDistance(points[1][0], points[1][1], points[2][0], points[2][1]);
+    double d3 = calculateDistance(points[2][0], points[2][1], points[3][0], points[3][1]);
+    double d4 = calculateDistance(points[3][0], points[3][1], points[0][0], points[0][1]);
+
+    // Sum the distances
+    return round((d1 + d2 + d3 + d4) * 100.0) / 100.0; // Round to 2 decimal places
+}
+
+
+// Function to calculate the area of a rectangle
+double calculateArea(double points[4][2]) {
+    // Sort points in counterclockwise order
+    sortRectanglePoints(points);
+
+    // Calculate lengths of adjacent sides
+    double length = calculateDistance(points[0][0], points[0][1], points[1][0], points[1][1]);
+    double width = calculateDistance(points[1][0], points[1][1], points[2][0], points[2][1]);
+
+    // Return area
+    return round((length * width) * 100.0) / 100.0; // Round to 2 decimal places
+}
 
