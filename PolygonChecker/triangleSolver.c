@@ -16,6 +16,19 @@ char* analyzeTriangle(double side1, double side2, double side3) {
 		return NULL;
 	}
 
+
+	if (side1 <= 0 || side2 <= 0 || side3 <= 0) {
+		printf("Invalid input: Sides must be positive.\n");
+		sprintf(result, "Invalid input");
+		return result;
+	}
+	if (side1 + side2 <= side3 || side1 + side3 <= side2 || side2 + side3 <= side1) {
+		printf("Not a traingle.\n");
+		sprintf(result, "Not a triangle");
+		return result;
+	}
+
+
 	if (side1 <= 0 || side2 <= 0 || side3 <= 0) {
 		result = "Not a triangle";
 	}
