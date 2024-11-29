@@ -30,7 +30,9 @@ int main() {
 				printf("Triangle analysis result: %s\n", result);
 				free(result);
 			}
+			
 			break;
+		}
 		case 2: {
 			printf_s("Rectangle selected.\n");
 			double rectanglePoints[4][2] = { {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0} };
@@ -108,7 +110,6 @@ double* getTriangleSides(double* triangleSides) {
 	}
 	return triangleSides;
 } 
-
 
 void getRectanglePoints(double points[4][2]) {
 	printf_s("Enter the coordinates of four points (x y) separated by spaces:\n");

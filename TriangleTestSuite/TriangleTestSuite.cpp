@@ -2,7 +2,7 @@
 #include "CppUnitTest.h"
 
 extern "C" {
-	char* analyzeTriangle(double side1, double side2, double side3);
+#include "C:\Users\parma\source\repos\CSCN71020_Group5\PolygonChecker\triangleSolver.h"
 }
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
