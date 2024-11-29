@@ -29,6 +29,29 @@ int main() {
 				free(result);
 			}
 			break;
+		case 2: {
+			printf_s("Rectangle selected.\n");
+			double rectanglePoints[4][2] = { {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0} };
+			getRectanglePoints(rectanglePoints);
+
+			// Calculate the perimeter for all shapes
+			double perimeter = calculatePerimeter(rectanglePoints);
+
+			// Print the perimeter, rounded to two decimal places
+			printf("Perimeter: %.2f\n", perimeter);
+
+			// Validate if the points form a rectangle
+			if (isRectangle(rectanglePoints)) {
+				double area = calculateArea(rectanglePoints);
+				printf("The points form a rectangle.\n");
+				printf("Area: %.2f\n", area);
+			}
+			else {
+				printf("The points do not form a rectangle.\n");
+			}
+			break;
+		}
+
 		case 0:
 			continueProgram = false;
 			break;
