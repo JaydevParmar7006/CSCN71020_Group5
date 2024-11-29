@@ -41,6 +41,7 @@ namespace RectangleTestSuite
     TEST_CLASS(Perimeter_Calculation_Tests)
     {
     public:
+
         TEST_METHOD(Test_RectanglePerimeter)
         {
             double points[4][2] = { {0, 0}, {4, 0}, {4, 3}, {0, 3} };
@@ -63,4 +64,21 @@ namespace RectangleTestSuite
         }
     };
 
+    TEST_CLASS(Area_CalculationTests)
+    {
+    public:
+        TEST_METHOD(Test_RectangleArea)
+        {
+            double points[4][2] = { {0, 0}, {4, 0}, {4, 3}, {0, 3} };
+            double area = calculateArea(points);
+            Assert::AreEqual(12.00, area, 0.01, L"Area should be 12.00 for the rectangle.");
+        }
+
+        TEST_METHOD(Test_SquareArea)
+        {
+            double points[4][2] = { {0, 0}, {2, 0}, {2, 2}, {0, 2} };
+            double area = calculateArea(points);
+            Assert::AreEqual(4.00, area, 0.01, L"Area should be 4.00 for the square.");
+        }
+    };
 }
