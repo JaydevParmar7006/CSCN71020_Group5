@@ -82,3 +82,20 @@ double* getTriangleSides(double* triangleSides) {
 	}
 	return triangleSides;
 } 
+
+
+void getRectanglePoints(double points[4][2]) {
+	printf_s("Enter the coordinates of four points (x y) separated by spaces:\n");
+	for (int i = 0; i < 4; i++) {
+		while (true) {
+			printf("Point %d: ", i + 1);
+			if (scanf_s("%lf %lf", &points[i][0], &points[i][1]) == 2) {
+				break;
+			}
+			else {
+				printf("Invalid input. Please enter two numeric values for Point %d.\n", i + 1);
+				while (getchar() != '\n');
+			}
+		}
+	}
+}
